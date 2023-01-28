@@ -9,7 +9,7 @@ const MealItem = ({meal}) => {
       <Description>{meal.description}</Description>
       <Price>${meal.price}</Price>
       </ListItem>
-      <MealItemForm id={"amunt" + Math.random().toString()}/>
+      <MealItemForm id={"amount" + Math.random().toString()}/>
         </List>
   )
 }

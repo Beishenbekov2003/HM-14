@@ -1,24 +1,40 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Button = ({children}) => {
-  return <StyledButton>{children}</StyledButton>
+const Button = ({children, variant = "contained", borderStyle = "rounded"}) => {
+  return <StyledButton variant={variant} borderStyle={borderStyle}>{children}</StyledButton>
 }
 
 export default Button
+const getBackgroundColor = (props) => {
+  return props.variant === "contained" ? " #8A2B06" : "#fff"
+}
+const getBorder = (props) => {
+  return props.variant === "contained" ? "none" : "1px solid #8A2B06"
+}
+const getColor = (props) => {
+return props.variant === "contained" ? "#fff" : "#8A2B06"
+}
 
+const getRadius = (props) => {
+return props.borderStyle === "rounded" ? "20px" : "6px"
+}
 const StyledButton = styled.button`
-background: #8A2B06;
-border-radius: 20px;
+background: ${getBackgroundColor};
+border-radius: ${getRadius};
 font-weight: 600;
 padding: 10px 32px; 
-color: white;
+color: ${getColor};
 display: flex;
 align-items: center;
-border: none;
+border: ${getBorder};
 cursor: pointer;
 :hover {
   background: #7E2A0A;
+  color: #fff;
+  path{
+  stroke:white;
+}
 }
 
 :active {
