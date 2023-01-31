@@ -1,38 +1,34 @@
-import React from 'react'
-import styled from 'styled-components';
-import MealItemForm from './MealItemForm';
-const MealItem = ({meal}) => {
+import styled from "styled-components";
+import MealItemForm from "./MealItemForm";
+const MealItem = ({ title, description, price, id, amount }) => {
   return (
     <List>
-    <ListItem>
-      <Title>{meal.title}</Title>
-      <Description>{meal.description}</Description>
-      <Price>${meal.price}</Price>
+      <ListItem>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+        <Price>${price}</Price>
       </ListItem>
-      <MealItemForm id={"amount" + Math.random().toString()}/>
-        </List>
-  )
-}
+      <MealItemForm id={id} title={title} price={price} amount={amount} />
+    </List>
+  );
+};
 
-export default MealItem
-
+export default MealItem;
 
 const List = styled.li`
   list-style: none;
-  border-bottom: 1px solid #D6D6D6;
+  border-bottom: 1px solid #d6d6d6;
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   :last-child {
-border: none;
-margin-bottom: 0;
+    border: none;
+    margin-bottom: 0;
   }
 `;
 const ListItem = styled.div`
   margin-bottom: 20px;
-  
-  
 `;
 const Title = styled.h4`
   font-weight: 600;
@@ -53,6 +49,6 @@ const Price = styled.span`
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
-  color: #AD5502;
+  color: #ad5502;
   margin-top: 4px;
-`
+`;

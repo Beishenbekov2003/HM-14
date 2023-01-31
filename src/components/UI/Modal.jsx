@@ -37,16 +37,16 @@ const StyledModalContent = styled.div`
   }
 `;
 const Backdrop = ({ onClose }) => {
-  return <StyledBackdrop onClose={onClose} />;
+  return <StyledBackdrop onClick={onClose} />;
 };
 const ModalContent = ({ children }) => {
   return <StyledModalContent>{children}</StyledModalContent>;
 };
-const Modal = ({ children, onClose  }) => {
+const Modal = ({ children, onClose }) => {
   return (
     <>
       {createPortal(
-        <Backdrop onClick={onClose} />,
+        <Backdrop onClose={onClose} />,
         document.getElementById("backdrop")
       )}
       {createPortal(

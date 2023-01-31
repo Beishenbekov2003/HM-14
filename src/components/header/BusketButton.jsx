@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { ReactComponent as BusketIcon } from "../../assets/icons/basket-icon.svg";
 
-const BusketButton = ({ count }) => {
+const BusketButton = ({ count, onShowBasket, ...rest }) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={onShowBasket} {...rest}>
       <BusketIcon />
       <StyledTitle>Your Cart </StyledTitle>
       <StyledCounter id="counter">{count || 0}</StyledCounter>
@@ -30,6 +30,27 @@ const StyledButton = styled.button`
   }
   &:hover > #counter {
     background-color: #672003;
+  }
+  &.bump {
+    animation: bump 300ms ease-out;
+  }
+
+  @keyframes bump {
+    0% {
+      transform: scale(1);
+    }
+    10% {
+      transform: scale(0.9);
+    }
+    30% {
+      transform: scale(1.1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `;
 
