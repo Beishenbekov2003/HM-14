@@ -6,11 +6,12 @@ import BasketItem from "./BasketItem";
 import TotalAmount from "./TotalAmount";
 
 const Basket = ({ onClose }) => {
-  const { items, updateBasketItem, deleteBasketItem } =
-    useContext(BasketContext);
-  const getTotalPrice = () => {
+  const { items, updateBasketItem, deleteBasketItem } = useContext(BasketContext);
+
+  const getTotalPrice = useCallback(() => {
+    console.log("FFFFFFFFFFFFFFFFFF")
     return items.reduce((s, { price, amount }) => s + amount * price, 0);
-  };
+  },[items]);
 
   const decrementAmount = useCallback(
     (id, amount) => {
