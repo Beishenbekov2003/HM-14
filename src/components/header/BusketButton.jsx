@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { ReactComponent as BusketIcon } from "../../assets/icons/basket-icon.svg";
+import { BasketContext } from "../../store/BasketContext";
 
-const BusketButton = ({ count, onShowBasket, ...rest }) => {
+const BusketButton = ({ count, ...rest }) => {
+  const { showBasketHandler } = useContext(BasketContext);
   return (
-    <StyledButton onClick={onShowBasket} {...rest}>
+    <StyledButton onClick={showBasketHandler} {...rest}>
       <BusketIcon />
       <StyledTitle>Your Cart </StyledTitle>
       <StyledCounter id="counter">{count || 0}</StyledCounter>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useCallback, useContext } from "react";
 import styled from "styled-components";
 import { BasketContext } from "../../store/BasketContext";
 import Modal from "../UI/Modal";
@@ -12,19 +12,26 @@ const Basket = ({ onClose }) => {
     return items.reduce((s, { price, amount }) => s + amount * price, 0);
   };
 
-  const decrementAmount = (id, amount) => {
-    if (amount > 1) {
-      updateBasketItem({ amount: amount - 1, id: id });
-    } else {
-      deleteBasketItem(id);
-    }
-  };
-  const incrementAmount = (id, amount) => {
-    updateBasketItem({ amount: amount + 1, id: id });
-  };
+  const decrementAmount = useCallback(
+    (id, amount) => {
+      if (amount > 1) {
+        updateBasketItem({ amount: amount - 1, id: id });
+      } else {
+        deleteBasketItem(id);
+      }
+    },
+    [updateBasketItem, deleteBasketItem]
+  );
+
+  const incrementAmount = useCallback(
+    (id, amount) => {
+      updateBasketItem({ amount: amount + 1, id: id });
+    },
+    [updateBasketItem]
+  );
 
   return (
-    <Modal onClose={onClose}>
+    <Modal>
       <Content>
         <FixedHeightContainer>
           {items.map((item) => {
@@ -50,7 +57,7 @@ const Basket = ({ onClose }) => {
   );
 };
 
-export default Basket;
+export default memo(Basket);
 
 const Content = styled.div`
   width: 100%;

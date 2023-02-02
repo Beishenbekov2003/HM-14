@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import MealItemForm from "./MealItemForm";
 const MealItem = ({ title, description, price, id, amount }) => {
@@ -13,7 +14,7 @@ const MealItem = ({ title, description, price, id, amount }) => {
   );
 };
 
-export default MealItem;
+export default memo(MealItem);
 
 const List = styled.li`
   list-style: none;

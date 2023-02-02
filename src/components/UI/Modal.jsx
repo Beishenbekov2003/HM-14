@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
+import { BasketContext } from "../../store/BasketContext";
 
 const StyledBackdrop = styled.div`
   position: fixed;
@@ -36,19 +37,17 @@ const StyledModalContent = styled.div`
     }
   }
 `;
-const Backdrop = ({ onClose }) => {
-  return <StyledBackdrop onClick={onClose} />;
+const Backdrop = () => {
+  const { showBasketHandler } = useContext(BasketContext);
+  return <StyledBackdrop onClick={showBasketHandler} />;
 };
 const ModalContent = ({ children }) => {
   return <StyledModalContent>{children}</StyledModalContent>;
 };
-const Modal = ({ children, onClose }) => {
+const Modal = ({ children }) => {
   return (
     <>
-      {createPortal(
-        <Backdrop onClose={onClose} />,
-        document.getElementById("backdrop")
-      )}
+      {createPortal(<Backdrop />, document.getElementById("backdrop"))}
       {createPortal(
         <ModalContent>{children}</ModalContent>,
         document.getElementById("modal-overlay")

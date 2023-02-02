@@ -6,7 +6,9 @@ export const BasketContext = createContext({
 });
 
 export const BasketProvider = ({ children }) => {
+  const [isBasketVisible, setBasketVisible] = useState(false);
   const [items, setItems] = useState([]);
+
   const getBasket = async () => {
     try {
       const { data } = await fetchApi("basket");
@@ -19,6 +21,10 @@ export const BasketProvider = ({ children }) => {
   useEffect(() => {
     getBasket();
   }, []);
+
+  const showBasketHandler = () => {
+    setBasketVisible((prevState) => !prevState);
+  };
   const addToBasket = async (newItem) => {
     try {
       const response = await fetchApi(`foods/${newItem.id}/addToBasket`, {
@@ -54,10 +60,12 @@ export const BasketProvider = ({ children }) => {
   };
 
   const state = {
+    isBasketVisible,
     items,
     addToBasket,
     updateBasketItem,
     deleteBasketItem,
+    showBasketHandler,
   };
   return (
     <BasketContext.Provider value={state}>{children}</BasketContext.Provider>

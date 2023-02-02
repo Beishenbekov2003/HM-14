@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { BasketContext } from "../../store/BasketContext";
 import Button from "../UI/Button";
 
-const TotalAmount = ({ price, onClose, onOrder }) => {
+const TotalAmount = ({ price, onOrder }) => {
+  const { showBasketHandler } = useContext(BasketContext);
   const orderButton =
     price > 0 ? <Button onClick={onOrder}>Order</Button> : null;
   const fixedPrice = price.toFixed(2);
@@ -13,7 +15,7 @@ const TotalAmount = ({ price, onClose, onOrder }) => {
         <Price>${fixedPrice}</Price>
       </Infocontainer>
       <ActionButttonsContainer>
-        <Button variant="outlined" onClick={onClose}>
+        <Button variant="outlined" onClick={showBasketHandler}>
           Close
         </Button>
         {orderButton}

@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import styled from "styled-components";
 
 const Button = ({
@@ -14,7 +14,7 @@ const Button = ({
   );
 };
 
-export default Button;
+export default memo(Button);
 const getBackgroundColor = (props) => {
   return props.variant === "contained" ? " #8A2B06" : "#fff";
 };

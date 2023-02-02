@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { BasketContext } from "../../store/BasketContext";
 import BusketButton from "./BusketButton";
-const Header = ({ onShowBasket }) => {
+const Header = () => {
   const { items } = useContext(BasketContext);
   const [animationClass, setAnimationClass] = useState("");
+
   const calculateTotalAmount = () => {
     const sum = items.reduce((s, item) => {
       return s + item.amount;
@@ -24,16 +25,12 @@ const Header = ({ onShowBasket }) => {
   return (
     <Container>
       <Logo>ReactMeals</Logo>
-      <BusketButton
-        onShowBasket={onShowBasket}
-        className={animationClass}
-        count={calculateTotalAmount()}
-      />
+      <BusketButton className={animationClass} count={calculateTotalAmount()} />
     </Container>
   );
 };
 
-export default Header;
+export default memo(Header);
 
 const Container = styled.header`
   position: fixed;

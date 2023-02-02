@@ -6,7 +6,6 @@ import { BasketContext } from "../../../store/BasketContext";
 
 const MealItemForm = ({ id, title, price }) => {
   const { addToBasket } = useContext(BasketContext);
-
   const [amount, setAmount] = useState(1);
   const amountChangeHandler = (event) => {
     setAmount(+event.target.value);
@@ -32,6 +31,7 @@ const MealItemForm = ({ id, title, price }) => {
           id={id}
           onChange={amountChangeHandler}
           value={amount}
+          defaultChecked={1}
         />
       </div>
       <Button>

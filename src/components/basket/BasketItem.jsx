@@ -1,8 +1,8 @@
-// import React, { useContext } from "react";
 import styled from "styled-components";
 import Button from "../UI/Button";
 import { ReactComponent as MinusIcon } from "../../assets/icons/minus.svg";
 import { ReactComponent as PlusIcon } from "../../assets/icons/plus-icon.svg";
+import { memo } from "react";
 const BasketItem = ({
   title,
   price,
@@ -39,7 +39,7 @@ const BasketItem = ({
   );
 };
 
-export default BasketItem;
+export default memo(BasketItem);
 
 const StyledMinusIcon = styled(MinusIcon)`
   color: #8a2b06;
